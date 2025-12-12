@@ -9,7 +9,13 @@
   },
   "storage": {
     "active": "cloudflare-r2",
-    "cloudflare-r2": {}
+    "cloudflare-r2": {
+      "ACCOUNT_ID": "YOUR_ACCOUNT_ID",
+      "ACCESS_KEY_ID": "YOUR_ACCESS_KEY",
+      "SECRET_ACCESS_KEY": "YOUR_SECRET_KEY",
+      "BUCKET": "YOUR_BUCKET_NAME",
+      "DOMAIN": "https://your-public-url.r2.dev"
+    }
   },
   "logging": {
     "transports": ["stdout"]
