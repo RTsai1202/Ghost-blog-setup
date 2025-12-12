@@ -5,7 +5,14 @@
     "host": "0.0.0.0"
   },
   "database": {
-    "client": "mysql"
+    "client": "mysql",
+    "connection": {
+      "host": "${MYSQL_HOST}",
+      "port": 3306,
+      "user": "${MYSQL_USERNAME}",
+      "password": "${MYSQL_PASSWORD}",
+      "database": "${MYSQL_DATABASE}"
+    }
   },
   "storage": {
     "active": "cloudflare-r2",
