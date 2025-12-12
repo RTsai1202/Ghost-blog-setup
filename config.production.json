@@ -10,11 +10,11 @@
   "storage": {
     "active": "cloudflare-r2",
     "cloudflare-r2": {
-      "ACCOUNT_ID": "YOUR_ACCOUNT_ID",
-      "ACCESS_KEY_ID": "YOUR_ACCESS_KEY",
-      "SECRET_ACCESS_KEY": "YOUR_SECRET_KEY",
-      "BUCKET": "YOUR_BUCKET_NAME",
-      "DOMAIN": "https://your-public-url.r2.dev"
+      "accountId": "06e025703db588fbcc937dab8422d784",
+      "accessKeyId": "0148765192b517f5c0732ec34ac96afb", 
+      "secretAccessKey": "e49187c1e410634c4c5874c8916499dd2266057c54a4646be7ef2a1ecf9b0cbb",
+      "bucket": "my-ghost-blog-media",
+      "domain": "https://media.startandkeep.com"
     }
   },
   "logging": {
