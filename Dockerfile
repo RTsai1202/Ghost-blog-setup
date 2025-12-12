@@ -17,3 +17,7 @@ RUN mkdir -p /var/lib/ghost/content/adapters/storage && \
     npm install --omit=dev
 
 RUN chown -R node:node /var/lib/ghost/content
+
+# 加入這兩行
+EXPOSE 2368
+CMD ["node", "current/index.js"]
