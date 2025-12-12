@@ -1,4 +1,4 @@
-FROM ghost:5-alpine
+FROM ghost:6-alpine
 
 # 安裝 Cloudflare R2 Storage Adapter
 RUN npm install ghost-storage-cloudflare-r2 && \
