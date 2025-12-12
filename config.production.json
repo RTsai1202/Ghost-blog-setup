@@ -1,0 +1,17 @@
+{
+  "url": "https://dockerghost.zeabur.app.com",
+  "server": {
+    "port": 2368,
+    "host": "0.0.0.0"
+  },
+  "database": {
+    "client": "mysql"
+  },
+  "storage": {
+    "active": "cloudflare-r2",
+    "cloudflare-r2": {}
+  },
+  "logging": {
+    "transports": ["stdout"]
+  }
+}
