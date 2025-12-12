@@ -1,24 +1,25 @@
+# 1. 使用官方最新版 Ghost 6
 FROM ghost:6-alpine
 
-# 1. 切換成最高權限 root 來安裝東西
-USER root
+# 2. 【關鍵修正】明確告訴 Zeabur 我們的埠號是 2368
+# 這能解決 502 Bad Gateway 問題
+EXPOSE 2368
+ENV PORT=2368
 
-# 2. 設定工作目錄
+# 3. 切換成 Root 最高權限來安裝 S3 外掛
+USER root
 WORKDIR /var/lib/ghost
 
-# 3. 安裝 S3 外掛
-RUN npm install ghost-storage-adapter-s3
+# 4. 安裝 S3 外掛 (這是官方映像檔沒有的)
+RUN npm install ghost-storage-adapter-s3 && \
+    mkdir -p content/adapters/storage/s3 && \
+    cp -r node_modules/ghost-storage-adapter-s3/* content/adapters/storage/s3/ && \
+    # 5. 【關鍵修正】把檔案權限還給 Ghost 的使用者 (node)
+    # 這能解決 CrashLoopBackOff (崩潰重試) 問題
+    chown -R node:node .
 
-# 4. 建立目錄並移動外掛檔案
-RUN mkdir -p content/adapters/storage/s3 && \
-    cp -r node_modules/ghost-storage-adapter-s3/* content/adapters/storage/s3/
-
-# 5. 🔥 最關鍵的一步：把所有檔案的擁有者強行改成 node (Ghost 的使用者)
-# 這樣 Ghost 啟動時才不會因為沒有權限讀取外掛而崩潰
-RUN chown -R node:node /var/lib/ghost
-
-# 6. 切換回 node 使用者來啟動 (符合 Ghost 安全規範)
+# 6. 切換回一般使用者啟動 (符合官方資安標準)
 USER node
 
-# 7. 啟動命令
+# 7. 啟動 Ghost
 CMD ["node", "current/index.js"]
